@@ -1,6 +1,6 @@
-#include "adder.h"
+#include "design.h"
 
-void adder(float A[SIZE],float B[SIZE],float Q[SIZE])
+void gframe(float A[SIZE],float B[SIZE],float Q[SIZE])
 {
 // Si prefiere colocar un nombre "alias" al bus, puede colocar "bundle=NombreDelBus"
 // Se utiliza register para capturar los datos del arreglo y almacenarlos en el IP Core
@@ -21,14 +21,14 @@ void adder(float A[SIZE],float B[SIZE],float Q[SIZE])
 		A_A[i] = A[i];
 		B_A[i] = B[i];
 	}
-	
+
 	// Operations
 	for(i = 0; i < SIZE; i++)
 	{
 	//#pragma HLS PIPELINE
 		Q_A[i] = A_A[i] + B_A[i];
 	}
-	
+
 	// Loading result
 	for(i = 0; i < SIZE; i++)
 	{

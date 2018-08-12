@@ -1,5 +1,5 @@
 #include <iostream>
-#include "adder.h"
+#include "design.h"
 #include <iomanip>
 #include <math.h>
 using namespace std;
@@ -21,7 +21,7 @@ int main(void)
 		Q_sw[i] = A[i]+B[i];
 	}
 	// Send data
-	adder(A, B, Q_hw);
+	gframe(A, B, Q_hw);
 	// Reveal data
 	cout << "Data available:" << endl;
 	for(int i = 0; i < SIZE; i++)
