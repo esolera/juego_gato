@@ -1,3 +1,5 @@
+#include <stdint.h>
+
 #define SIZE 10
 
-void gframe(float A[SIZE],float B[SIZE],float Q[SIZE]);
+void gframe(int A[SIZE],int Q[SIZE]);

@@ -1,0 +1,27 @@
+awk: symbol lookup error: awk: undefined symbol: mpfr_z_sub
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'esolera' on host 'esolera-Oryx-Pro' (Linux_x86_64 version 4.15.0-29-generic) on Sat Aug 11 20:08:30 CST 2018
+INFO: [HLS 200-10] On os Ubuntu 16.04.5 LTS
+INFO: [HLS 200-10] In directory '/media/esolera/ExtraDrive1/TEC/cuatri_2/Molina/gato/juego_gato/hls_project/src'
+INFO: [HLS 200-10] Opening project '/media/esolera/ExtraDrive1/TEC/cuatri_2/Molina/gato/juego_gato/hls_project/src/gato'.
+INFO: [HLS 200-10] Opening solution '/media/esolera/ExtraDrive1/TEC/cuatri_2/Molina/gato/juego_gato/hls_project/src/gato/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z010clg400-1'
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../tb.cpp in debug mode
+   Compiling ../../../../design.cpp in debug mode
+   Generating csim.exe
+Data available:
+Software: 0 Hardware: 0 Delta: 0
+Software: 1 Hardware: 1 Delta: 0
+Software: 2 Hardware: 2 Delta: 0
+Software: 3 Hardware: 3 Delta: 0
+Software: 4 Hardware: 4 Delta: 0
+Software: 5 Hardware: 5 Delta: 0
+Software: 6 Hardware: 6 Delta: 0
+Software: 7 Hardware: 7 Delta: 0
+Software: 8 Hardware: 8 Delta: 0
+Software: 9 Hardware: 9 Delta: 0
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************

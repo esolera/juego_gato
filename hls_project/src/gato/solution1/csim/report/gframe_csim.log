@@ -1,0 +1,18 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../tb.cpp in debug mode
+   Compiling ../../../../design.cpp in debug mode
+   Generating csim.exe
+Data available:
+Software: 0 Hardware: 0 Delta: 0
+Software: 1 Hardware: 1 Delta: 0
+Software: 2 Hardware: 2 Delta: 0
+Software: 3 Hardware: 3 Delta: 0
+Software: 4 Hardware: 4 Delta: 0
+Software: 5 Hardware: 5 Delta: 0
+Software: 6 Hardware: 6 Delta: 0
+Software: 7 Hardware: 7 Delta: 0
+Software: 8 Hardware: 8 Delta: 0
+Software: 9 Hardware: 9 Delta: 0
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="design.cpp" path="/media/esolera/ExtraDrive1/TEC/cuatri_2/Molina/gato/juego_gato/hls_project/src/design.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="tb.cpp" path="/media/esolera/ExtraDrive1/TEC/cuatri_2/Molina/gato/juego_gato/hls_project/src/tb.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>
