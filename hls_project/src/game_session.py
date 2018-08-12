@@ -55,27 +55,52 @@ def empate(Board):
                 return False
     return True
 
+Board = [[0,0,0],[0,0,0],[0,0,0]]
 
-#Función macro
-print("---------------------------------------------------------------------------------------------------------------------")
-print("--------------------------------------Inicio juego ------------------------------------------------------------------")
-Board = [
-    [0,0,0],
-    [0,0,0],
-    [0,0,0]
-]
-print(Board)
-while(True):
+def play():
     jugador_en_turno=Check_jugador(Board)
     print("Es el turno del jugador %i" %jugador_en_turno)
-    posicion = int(input("Enter a number: "))
+    posicion = int(input("Coloque la posicion: "))
     while(not Valid_move(Board,posicion)):
-        posicion = int(input("Posicion invalida, inserte nuevamente un número"))
+        posicion = int(input("Posicion invalida, inserte otra posicion no ocupada"))
     Board=update_State(Board,posicion,jugador_en_turno)
     print(Board)
-    if(ganador(Board)):
-        print("Ha ganado el jugador %i" %jugador_en_turno)
-        break
-    if(empate(Board)):
-        print("El juego a quedado empatado")
-        break
+    if(ganador(Board) or empate(Board)):
+        if(ganador(Board)):
+            print("Ha ganado el jugador %i" %jugador_en_turno)
+            return(True)
+        else:
+            return(True)
+            print("El juego a quedado empatado")
+    else:
+        return(False)
+
+
+
+def __init__:
+    print("---------------------------------------------------------------------------------------------------------------------")
+    print("--------------------------------------Inicio juego ------------------------------------------------------------------")
+    Board = [
+        [0,0,0],
+        [0,0,0],
+        [0,0,0]
+    ]
+
+    print(Board)
+    while(True):
+
+
+
+        jugador_en_turno=Check_jugador(Board)
+        print("Es el turno del jugador %i" %jugador_en_turno)
+        posicion = int(input("Enter a number: "))
+        while(not Valid_move(Board,posicion)):
+            posicion = int(input("Posicion invalida, inserte nuevamente un número"))
+        Board=update_State(Board,posicion,jugador_en_turno)
+        print(Board)
+        if(ganador(Board)):
+            print("Ha ganado el jugador %i" %jugador_en_turno)
+            break
+        if(empate(Board)):
+            print("El juego a quedado empatado")
+           break
