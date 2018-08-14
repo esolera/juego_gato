@@ -100,21 +100,22 @@ def check_blocks(i,j,blocks):
         id+=1
     return False
 
-print(ref)
+if __name__ == "__main__":
+	print(ref)
 
-img = Image.new( 'RGB', (640,512), "black") # Create a new black image
-pixels = img.load() # Create the pixel map
-for i in range(img.size[0]):    # For every pixel:
-    for j in range(img.size[1]):
-        if(check_lines(i,j,lines)):
-            pixels[i,j] = line_color;
-        #elif(check_block):
-        #    pixels[i,j] = xrgb[j%len(xrgb[0])][i%len(xrgb[0])];
-        elif(check_blocks(i,j,blocks)):
-            pixels[i,j] = symbol_color
-        else:
-            pixels[i,j] = background_color # Set the colour accordingly
-        if(i==ref[0] and j==ref[1]):
-            pixels[i,j] = (255, 255, 255) # Set the colour accordingly
+	img = Image.new( 'RGB', (640,512), "black") # Create a new black image
+	pixels = img.load() # Create the pixel map
+	for i in range(img.size[0]):    # For every pixel:
+		for j in range(img.size[1]):
+			if(check_lines(i,j,lines)):
+				pixels[i,j] = line_color;
+			#elif(check_block):
+			#    pixels[i,j] = xrgb[j%len(xrgb[0])][i%len(xrgb[0])];
+			elif(check_blocks(i,j,blocks)):
+				pixels[i,j] = symbol_color
+			else:
+				pixels[i,j] = background_color # Set the colour accordingly
+			if(i==ref[0] and j==ref[1]):
+				pixels[i,j] = (255, 255, 255) # Set the colour accordingly
 
-img.show()
+	img.show()
