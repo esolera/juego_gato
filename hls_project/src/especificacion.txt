@@ -1,0 +1,5 @@
+Para el codigo en C:
+
+  Tipo de dato entero sin signo de 8 bits.
+
+  Board
