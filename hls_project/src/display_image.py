@@ -67,7 +67,7 @@ blocks = [
     [(ref[0]*3+line_width+offx,ref[1]*3+line_width+offy),(ref[0]*3+line_width+offx+size_sprite,ref[1]*3+line_width+offy+size_sprite)] #1 0,2
 ]
 
-print(lines)
+#print(lines)
 def in_block(col,row,block):
     p0,p1 = block;
     return (p0[0]<=col) and (p0[1]<=row) and (p1[0]>=col) and (p1[1]>=row)
@@ -78,13 +78,13 @@ def check_lines(i,j,lines):
             return True
     return False
 
-Board = [
-    [0,0,0],
-    [1,2,0],
-    [0,1,2]
-]
+#Board = [
+#    [0,2,1],
+#    [1,2,0],
+#    [0,1,2]
+#]
 
-def check_blocks(i,j,blocks):
+def check_blocks(i,j,blocks,Board):
     id=0
     block_val = 0
     for block in blocks:
@@ -100,8 +100,8 @@ def check_blocks(i,j,blocks):
         id+=1
     return False
 
-if __name__ == "__main__":
-	print(ref)
+def create_image(Board):
+	#print(ref)
 
 	img = Image.new( 'RGB', (640,512), "black") # Create a new black image
 	pixels = img.load() # Create the pixel map
@@ -111,7 +111,7 @@ if __name__ == "__main__":
 				pixels[i,j] = line_color;
 			#elif(check_block):
 			#    pixels[i,j] = xrgb[j%len(xrgb[0])][i%len(xrgb[0])];
-			elif(check_blocks(i,j,blocks)):
+			elif(check_blocks(i,j,blocks,Board)):
 				pixels[i,j] = symbol_color
 			else:
 				pixels[i,j] = background_color # Set the colour accordingly
