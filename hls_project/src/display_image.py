@@ -93,9 +93,9 @@ def check_blocks(i,j,blocks,Board):
             if(block_val==0):
                 return False
             elif(block_val==1):
-                pix = osymbol[ (j-block[0][1])//(scale_sprite+1) ][ (i-block[0][0])//(scale_sprite+1) ]
+                pix = osymbol[ (j-block[0][1]-1)//(scale_sprite) ][ (i-block[0][0]-1)//(scale_sprite) ]
             else:
-                pix = xsymbol[ (j-block[0][1])//(scale_sprite+1) ][ (i-block[0][0])//(scale_sprite+1) ]
+                pix = xsymbol[ (j-block[0][1]-1)//(scale_sprite) ][ (i-block[0][0]-1)//(scale_sprite) ]
             return True if(pix==1) else False
         id+=1
     return False
