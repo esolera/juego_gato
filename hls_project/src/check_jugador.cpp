@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <iostream>
 //Variables Globales
 int Board[3][3]={{1,1,0},{0,0,0},{0,0,0}};
 bool jugador_out;
@@ -49,9 +48,6 @@ bool Valid_move(){
       valido=true;
     }
   }
-  else {
-    valido=false;
-  }
 }
 
 
@@ -65,8 +61,7 @@ int main(int argc, char const *argv[]) {
 
 
 int main(int argc, char const *argv[]) {
-  std::cin >> posicion;
+  cin>>posicion;
   Valid_move();
   printf("%d\n",valido);
   return 0;
-}

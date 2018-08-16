@@ -6,4 +6,4 @@ COMP=game_session.o
 
 
 all:
-	${CXX} ${MAIN} -o ${COMP}
+	${CXX} ${MAIN} -o ${COMP} 

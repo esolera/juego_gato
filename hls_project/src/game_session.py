@@ -27,6 +27,8 @@ def Valid_move(Board,posicion):
             valido=False
         else:
             valido=True
+    else:
+        valido=False
     return valido
 
 def update_State(Board,posicion,jugador):
