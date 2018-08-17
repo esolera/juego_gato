@@ -34,7 +34,7 @@ bool Valid_move(){
     }
   }
   else if(posicion<=5){
-    if(Board[0][posicion-3]!=0){
+    if(Board[1][posicion-3]!=0){
       valido=false;
     }
     else{
@@ -42,7 +42,7 @@ bool Valid_move(){
     }
   }
   else if(posicion<=8){
-    if(Board[0][posicion-6]!=0){
+    if(Board[2][posicion-6]!=0){
       valido=false;
     }
     else{
@@ -55,6 +55,15 @@ bool Valid_move(){
 }
 
 
+
+bool ganador(){
+  for ( int i = 0; i < 3; i = i + 1 ){
+    if(((Board[i][0]*Board[i][1]*Board[i][2])==1) or ((Board[i][0]*Board[i][1]*Board[i][2])==8) or ((Board[0][i]*Board[1][i]*Board[2][i])==1) or ((Board[0][i]*Board[1][i]*Board[2][i])==8)){
+      
+    }
+  }
+
+}
 /* Prueba check funcion
 int main(int argc, char const *argv[]) {
   Check_jugador();
