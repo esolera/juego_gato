@@ -149,18 +149,49 @@ bool check_blocks(ap_uint<10> col,ap_uint<10> row){
 //            return True
 //return False
 
-//bool check_lines(ap_uint<10> col,ap_uint<10> row){
-//	ap_uint<10> id;
-//	for(id=0;id<)
-//	return 0;
-//}
+bool in_line(ap_uint<10> col,ap_uint<10> row,ap_uint<10> line_id){
+	ap_uint<10> p0[2] = Lines[line_id][0];
+	ap_uint<10> p1[2] = Lines[line_id][1];
+	return (p0[0]<=col) & (p0[1]<=row) & (p1[0]>=col) & (p1[1]>=row);
+}
+
+bool check_lines(ap_uint<10> col,ap_uint<10> row){
+	ap_uint<10> id;
+	for(id=0;id<8;id++){
+		if(in_line(col,row,id)){
+			return 1;
+		}
+	}
+	return 0;
+}
+
+//img = Image.new( 'RGB', (640,400), "black") # Create a new black image
+//pixels = img.load() # Create the pixel map
+//for i in range(img.size[0]):    # For every pixel:
+//	for j in range(img.size[1]):
+//		if(check_lines(i,j,lines)):
+//			pixels[i,j] = line_color;
+//		#elif(check_block):
+//		#    pixels[i,j] = xrgb[j%len(xrgb[0])][i%len(xrgb[0])];
+//		elif(check_blocks(i,j,blocks,Board)):
+//			pixels[i,j] = symbol_color
+//		else:
+//pixels[i,j] = background_color # Set the colour accordingly
 
 int generate_game(stream<data_t> &image_stream){
-	
+
 	data_t Pixel;
 	for(int rows=0;rows<ROWS; rows++){
 		for(int cols=0; cols<COLS; cols++){
-			Pixel.tdata = BACKGROUND_COLOR;
+			if(check_lines(cols,rows)){
+				Pixel.tdata = LINE_COLOR;
+			}else{
+				if(check_blocks(cols,rows)){
+					Pixel.tdata = SYMBOL_COLOR;
+				}else{
+					Pixel.tdata = BACKGROUND_COLOR;
+				}
+			}
 			Pixel.tlast=false;
 		}
 		if(!(rows<(ROWS-1))){
@@ -171,4 +202,3 @@ int generate_game(stream<data_t> &image_stream){
 
 	return 0;
 }
-
