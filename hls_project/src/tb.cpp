@@ -32,5 +32,14 @@ int main(void)
 		if(delta > 0.01) error++;
 	}
 
+for ( int block = 0; block < 8; block = block + 1 ){
+	for ( int rows = 0; rows < 400; rows = rows + 1 ){
+		for(int cols = 0; cols < 640; cols = cols + 1 ){
+			//cout << in_block(cols,rows,block)<< "  Col" << cols << " fil" << rows << " block" << block << endl;
+			cout << in_block(cols,rows,block)<< endl;
+		}
+	}
+}
+
 	return error;
 }
