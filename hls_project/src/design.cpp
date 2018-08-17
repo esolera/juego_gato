@@ -36,9 +36,41 @@ void gframe(int A[SIZE],int Q[SIZE])
 }
 
 
+const ap_int<1> xsymbol={
+		{1,1,0,0,0,1,1},
+		{0,1,0,0,0,1,0},
+		{0,1,1,0,1,1,0},
+		{0,0,1,1,1,0,0},
+		{0,1,1,0,1,1,0},
+		{0,1,0,0,0,1,0},
+		{1,1,0,0,0,1,1}
+};
+
+const ap_int<1> osymbol={
+	    {0,0,1,1,1,0,0},
+	    {0,1,1,0,1,1,0},
+	    {1,1,0,0,0,1,1},
+	    {1,0,0,0,0,0,1},
+	    {1,1,0,0,0,1,1},
+	    {0,1,1,0,1,1,0},
+		{0,0,1,1,1,0,0}
+};
+
+
+
 int generate_game(stream<data_t> &image_stream){
 	
-	for(int i)
+	data_t Pixel;
+	for(int rows=0;rows<ROWS; rows++){
+		for(int cols=0; cols<COLS; cols++){
+			Pixel.tdata = BACKGROUND_COLOR;
+			Pixel.tlast=false;
+		}
+		if(!(rows<(ROWS-1))){
+			Pixel.tlast=true;
+		}
+		image_stream.write(Pixel);
+	}
 
 	return 0;
 }
