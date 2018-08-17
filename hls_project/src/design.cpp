@@ -34,3 +34,12 @@ void gframe(int A[SIZE],int Q[SIZE])
 		Q[i] = Q_A[i];
 	}
 }
+
+
+int generate_game(stream<data_t> &image_stream){
+	
+	for(int i)
+
+	return 0;
+}
+
