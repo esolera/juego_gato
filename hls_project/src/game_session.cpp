@@ -16,7 +16,7 @@ bool Check_jugador(){
 
     }
   }
-  if(jugadas%2){
+  if(jugadas%2==0){
     jugador_out=true;
   }
   else{
@@ -54,23 +54,46 @@ bool Valid_move(){
   }
 }
 
+int update_State(int posicion, bool jugador) {
+	int jugador_value;
+	if (jugador) {
+		jugador_value = 1;
+	}
+	else {
+		jugador_value = 2;
+	}
 
+	if(posicion <=2) {
+		Board[0][posicion] = jugador_value;
+	}
+	else if(posicion <= 5){
+		Board[1][posicion-3] = jugador_value;
+	}
+	else if(posicion <= 8){
+		Board[2][posicion-6] = jugador_value;
+	}
+	return 0;
+}
 
 bool ganador(){
   for ( int i = 0; i < 3; i = i + 1 ){
     if(((Board[i][0]*Board[i][1]*Board[i][2])==1) or ((Board[i][0]*Board[i][1]*Board[i][2])==8) or ((Board[0][i]*Board[1][i]*Board[2][i])==1) or ((Board[0][i]*Board[1][i]*Board[2][i])==8)){
-      
+
     }
   }
 
 }
-/* Prueba check funcion
-int main(int argc, char const *argv[]) {
-  Check_jugador();
-  printf("%d\n",jugador_out);
-  return 0;
+
+bool empate(){
+	for (int i = 0; i < 3; i = i + 1) {
+		for (int j = 0; i < 3; i = i + 1) {
+			if(Board[i][j]) {
+				return false;
+			}
+		}
+	}
+	return true;
 }
-*/
 
 
 int main(int argc, char const *argv[]) {
