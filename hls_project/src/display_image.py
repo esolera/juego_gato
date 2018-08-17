@@ -1,7 +1,7 @@
 from PIL import Image
 
 
-screen_res = (640,512)
+screen_res = (640,400)
 
 line_color = (220,220,0)
 symbol_color = (0,220,220)
@@ -19,7 +19,7 @@ xsymbol = [
     [1,1,0,0,0,1,1]
 ]
 
-offy = 15
+offy = 3
 offx = 25
 scale_sprite = 10
 size_sprite = scale_sprite*len(xsymbol)
