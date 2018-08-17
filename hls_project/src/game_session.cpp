@@ -110,6 +110,8 @@ int main(int argc, char const *argv[]) {
   return 0;
 }
 */
+//Prueba fucnion ganador
+/*
 int main(int argc, char const *argv[]) {
   for (int a = 0; a < 3; a = a + 1 ){
     for (int b = 0; b < 3; b = b + 1 ){
@@ -169,3 +171,4 @@ int main(int argc, char const *argv[]) {
 
   return 0;
 }
+*/
