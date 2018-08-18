@@ -34,11 +34,10 @@ typedef ap_axis data_t;
 int generate_game(stream<data_t> &image_stream);
 
 
-
+int create_image(ap_uint<10> posicion, stream<data_t> &image_stream);
 
 
 #define SIZE 10
 
-void gframe(int A[SIZE],int Q[SIZE]);
 
 bool in_block(ap_uint<10> col,ap_uint<10> row,ap_uint<10> block_id);

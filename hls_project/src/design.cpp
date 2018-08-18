@@ -1,42 +1,6 @@
 #include "design.h"
-#include <iostream>
 
-using namespace std;
 
-void gframe(int A[SIZE],int Q[SIZE])
-{
-// Si prefiere colocar un nombre "alias" al bus, puede colocar "bundle=NombreDelBus"
-// Se utiliza register para capturar los datos del arreglo y almacenarlos en el IP Core
-// La interface es AxiLite
-#pragma HLS INTERFACE s_axilite port=return
-#pragma HLS INTERFACE s_axilite register port=A
-#pragma HLS INTERFACE s_axilite register port=B
-#pragma HLS INTERFACE s_axilite register port=Q
-	// Buffers
-	int A_A[SIZE];
-	int Q_A[SIZE];
-	int i;
-	// Load buffers
-	for(i = 0; i < SIZE; i++)
-	{
-	//#pragma HLS PIPELINE
-		A_A[i] = A[i];
-	}
-
-	// Operations
-	for(i = 0; i < SIZE; i++)
-	{
-	//#pragma HLS PIPELINE
-		Q_A[i] = A_A[i];
-	}
-
-	// Loading result
-	for(i = 0; i < SIZE; i++)
-	{
-	//#pragma HLS PIPELINE
-		Q[i] = Q_A[i];
-	}
-}
 
 
 const ap_uint<1> xsymbol[][7]={
@@ -95,9 +59,7 @@ ap_uint<10> Blocks[][2][2] = {
 //    return (p0[0]<=col) and (p0[1]<=row) and (p1[0]>=col) and (p1[1]>=row)
 
 bool in_block(ap_uint<10> col,ap_uint<10> row,ap_uint<10> block_id){
-	ap_uint<10> p0[2] = Blocks[block_id][0];
-	ap_uint<10> p1[2] = Blocks[block_id][1];
-	return (p0[0]<=col) & (p0[1]<=row) & (p1[0]>=col) & (p1[1]>=row);
+	return (Blocks[block_id][0][0]<=col) & (Blocks[block_id][0][1]<=row) & (Blocks[block_id][1][0]>=col) & (Blocks[block_id][1][1]>=row);
 }
 
 
@@ -150,9 +112,7 @@ bool check_blocks(ap_uint<10> col,ap_uint<10> row){
 //return False
 
 bool in_line(ap_uint<10> col,ap_uint<10> row,ap_uint<10> line_id){
-	ap_uint<10> p0[2] = Lines[line_id][0];
-	ap_uint<10> p1[2] = Lines[line_id][1];
-	return (p0[0]<=col) & (p0[1]<=row) & (p1[0]>=col) & (p1[1]>=row);
+	return (Lines[line_id][0][0]<=col) & (Lines[line_id][0][1]<=row) & (Lines[line_id][1][0]>=col) & (Lines[line_id][1][1]>=row);
 }
 
 bool check_lines(ap_uint<10> col,ap_uint<10> row){
@@ -178,6 +138,113 @@ bool check_lines(ap_uint<10> col,ap_uint<10> row){
 //		else:
 //pixels[i,j] = background_color # Set the colour accordingly
 
+////////////END OF IMAGE FUNCTIONS. START OF GAME SESSION FUNCTIONS
+
+//Variables Globales
+//int Board[3][3]={{0,0,0},{0,0,0},{0,0,0}};
+bool jugador_out;
+//Funcion para saber el turno del jugador
+bool Check_jugador(){
+	ap_uint<10> jugadas=0;
+  for ( ap_uint<10> i = 0; i < 3; i = i + 1 ){
+    for ( ap_uint<10> j = 0; j < 3; j = j + 1 ){
+      if(Board[i][j]!=0){
+        jugadas=jugadas+1;
+      }
+
+    }
+  }
+  if(jugadas%2 == 0){
+    jugador_out=true;
+  }
+  else{
+    jugador_out=false;
+  }
+}
+
+bool Valid_move(ap_uint<10> posicion){
+  if(posicion<=2){
+    if(Board[0][posicion]!=0){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+  else if(posicion<=5){
+    if(Board[1][posicion-3]!=0){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+  else if(posicion<=8){
+    if(Board[2][posicion-6]!=0){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+  else {
+	  return false;
+  }
+}
+
+void update_State(ap_uint<10> posicion) {
+	ap_uint<10> jugador_value;
+	if (jugador_out) {
+		jugador_value = 1;
+	}
+	else {
+		jugador_value = 2;
+	}
+
+	if(posicion <=2) {
+		Board[0][posicion] = jugador_value;
+	}
+	else if(posicion <= 5){
+		Board[1][posicion-3] = jugador_value;
+	}
+	else if(posicion <= 8){
+		Board[2][posicion-6] = jugador_value;
+	}
+}
+
+bool ganador(){
+  for ( ap_uint<10> i = 0; i < 3; i = i + 1 ){
+    if(((Board[i][0] & Board[i][1] & Board[i][2])==1) ||
+    		((Board[i][0] & Board[i][1] & Board[i][2])==2) ||
+			((Board[0][i] & Board[1][i] & Board[2][i])==1) ||
+			((Board[0][i] & Board[1][i] & Board[2][i])==2)){
+      return true;
+    }
+  }
+  if(((Board[0][0] & Board[1][1] & Board[2][2])==1) ||
+		  ((Board[0][0] & Board[1][1] & Board[2][2])==2) ||
+		  ((Board[0][2] & Board[1][1] & Board[2][0])==2) ||
+		  ((Board[0][2] & Board[1][1] & Board[2][0])==1)){
+    return true;
+
+  }
+  else{
+    return false;
+  }
+
+}
+
+bool empate(){
+	for (ap_uint<10> i = 0; i < 3; i = i + 1) {
+		for (ap_uint<10> j = 0; i < 3; i = i + 1) {
+			if(Board[i][j]) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 int generate_game(stream<data_t> &image_stream){
 
 	data_t Pixel;
@@ -193,12 +260,50 @@ int generate_game(stream<data_t> &image_stream){
 				}
 			}
 			Pixel.tlast=false;
+			if(!(rows<(ROWS-1))){
+				Pixel.tlast=true;
+			}
+			image_stream.write(Pixel);
 		}
-		if(!(rows<(ROWS-1))){
-			Pixel.tlast=true;
-		}
-		image_stream.write(Pixel);
 	}
 
 	return 0;
 }
+
+void clean_board(){
+	for (ap_uint<10> i=0;i<3;i++){
+		for (ap_uint<10> j=0;j<3;j++){
+			Board[i][j] = 0;
+		}
+	}
+
+}
+
+using namespace std;
+
+int create_image(ap_uint<10> posicion, stream<data_t> &image_stream) {
+#pragma HLS INTERFACE axis register both port=image_stream
+#pragma HLS INTERFACE s_axilite port=posicion
+#pragma HLS INTERFACE s_axilite port=return
+	static int game_state = 0x00;
+	Check_jugador();
+	if (!Valid_move(posicion)){
+		game_state = 0xFFFF;
+		return game_state;
+	}
+	update_State(posicion);
+	generate_game(image_stream);
+
+	if(ganador()) {
+		clean_board();
+		game_state = 0x10;
+		return game_state;
+	}
+	if(empate()) {
+		clean_board();
+		game_state = 0x100;
+		return game_state;
+	}
+	return game_state;
+}
+
