@@ -248,6 +248,8 @@ bool empate(){
 int generate_game(stream<data_t> &image_stream){
 
 	data_t Pixel;
+	Pixel.tlast=false;
+	Pixel.tuser=false;
 	for(int rows=0;rows<ROWS; rows++){
 		for(int cols=0; cols<COLS; cols++){
 			if(check_lines(cols,rows)){
@@ -259,8 +261,10 @@ int generate_game(stream<data_t> &image_stream){
 					Pixel.tdata = BACKGROUND_COLOR;
 				}
 			}
-			Pixel.tlast=false;
-			if(!(rows<(ROWS-1))){
+			if(rows==0 && cols==0){
+				Pixel.tuser=true;
+			}
+			if((rows==(ROWS-1)) && (cols==(COLS-1))){
 				Pixel.tlast=true;
 			}
 			image_stream.write(Pixel);
@@ -278,8 +282,6 @@ void clean_board(){
 	}
 
 }
-
-using namespace std;
 
 int create_image(ap_uint<10> posicion, stream<data_t> &image_stream) {
 #pragma HLS INTERFACE axis register both port=image_stream

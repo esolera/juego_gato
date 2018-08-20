@@ -1,7 +1,7 @@
 from PIL import Image
 
 
-screen_res = (640,400)
+screen_res = (640,480)
 
 line_color = (220,220,0)
 symbol_color = (0,220,220)
@@ -103,7 +103,7 @@ def check_blocks(i,j,blocks,Board):
 def create_image(Board):
 	#print(ref)
 
-	img = Image.new( 'RGB', (640,512), "black") # Create a new black image
+	img = Image.new( 'RGB', (640,480), "black") # Create a new black image
 	pixels = img.load() # Create the pixel map
 	for i in range(img.size[0]):    # For every pixel:
 		for j in range(img.size[1]):

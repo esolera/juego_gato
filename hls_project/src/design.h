@@ -7,7 +7,7 @@ using namespace hls;
 
 // Resolution 640x400
 #define COLS (640)
-#define ROWS (400)
+#define ROWS (480)
 
 
 #define LINE_COLOR (0xDCDC00)//(220,220,0)
@@ -27,6 +27,7 @@ using namespace hls;
 struct ap_axis{
 	ap_uint<24> tdata;
 	ap_uint<1> tlast;
+	ap_uint<1> tuser;
 };
 
 typedef ap_axis data_t;
